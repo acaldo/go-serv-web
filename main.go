@@ -8,15 +8,15 @@ type task struct {
 	done        bool
 }
 
-func (t task) doneTask() {
+func (t *task) doneTask() {
 	t.done = true
 }
 
-func (t task) updateDescription(newDescription string) {
+func (t *task) updateDescription(newDescription string) {
 	t.description = newDescription
 }
 
-func (t task) updateName(newName string) {
+func (t *task) updateName(newName string) {
 	t.name = newName
 }
 
