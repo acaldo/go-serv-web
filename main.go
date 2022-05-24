@@ -22,7 +22,18 @@ func main() {
 	if err1 != nil || err2 != nil {
 		fmt.Println("Error")
 	} else {
-		fmt.Println(operador1 + operador2)
+		switch operador {
+		case "+":
+			fmt.Println(operador1 + operador2)
+		case "-":
+			fmt.Println(operador1 - operador2)
+		case "*":
+			fmt.Println(operador1 * operador2)
+		case "/":
+			fmt.Println(operador1 / operador2)
+		default:
+			fmt.Println("operador no valido")
+		}
 	}
 
 }
