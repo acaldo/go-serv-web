@@ -9,7 +9,7 @@ import (
 )
 
 type calc struct {
-	operador  string
+	operator  string
 	operador1 int
 	operador2 int
 }
