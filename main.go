@@ -13,7 +13,18 @@ func main() {
 	scanner.Scan()
 	operacion := scanner.Text()
 	fmt.Println(operacion)
-	operador := "-"
+	var operador string
+	if strings.Contains(operacion, "+") {
+		operador = "+"
+	} else if strings.Contains(operacion, "-") {
+		operador = "-"
+	} else if strings.Contains(operacion, "*") {
+		operador = "*"
+	} else if strings.Contains(operacion, "/") {
+		operador = "/"
+	} else {
+		fmt.Println("Operacion no valida")
+	}
 	valores := strings.Split(operacion, operador)
 	fmt.Println(valores)
 	fmt.Println(valores[0] + valores[1])
