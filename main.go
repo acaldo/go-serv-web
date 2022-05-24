@@ -1,53 +1,34 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strconv"
-	"strings"
-)
+import "fmt"
 
-type calc struct {
-	operator  string
-	operador1 int
-	operador2 int
+type task struct {
+	name        string
+	description string
+	done        bool
 }
 
-func (c calc) operate(entry string, operator string) int {
-	cleanEntrance := strings.Split(entry, operator)
-	operador1 := parsear(cleanEntrance[0])
-	operador2 := parsear(cleanEntrance[1])
-	switch operator {
-	case "+":
-		return (operador1 + operador2)
-	case "-":
-		return (operador1 - operador2)
-	case "*":
-		return (operador1 * operador2)
-	case "/":
-		return (operador1 / operador2)
-	default:
-		fmt.Println("invalid operator")
-		return 0
-	}
+func (t task) doneTask() {
+	t.done = true
 }
 
-func parsear(entry string) int {
-	operador1, _ := strconv.Atoi(entry)
-	return operador1
+func (t task) updateDescription(newDescription string) {
+	t.description = newDescription
 }
 
-func readEntry() string {
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	entry := scanner.Text()
-	return entry
+func (t task) updateName(newName string) {
+	t.name = newName
 }
 
 func main() {
-	entry := readEntry()
-	operator := readEntry()
-	operation := calc{}
-	fmt.Println(operation.operate(entry, operator))
+	t := task{
+		name:        "Task 1",
+		description: "This is task 1",
+		/*done:        false,*/ //es redundante ya que el ZERO VALUE de un BOOLEAN es FALSE
+	}
+	fmt.Printf("%+v\n", t)
+	t.doneTask()
+	t.updateName("finish")
+	t.updateDescription("finish task")
+	fmt.Printf("%+v\n", t)
 }
