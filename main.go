@@ -48,10 +48,14 @@ func main() {
 	//fmt.Printf("%+v\n", t)
 	fmt.Println(taskList)
 	addTask(t)
-	fmt.Printf("%+v\n", taskList[0])
 	addTask(t1)
-	fmt.Printf("%+v\n", taskList)
-	deleteTask(0)
-	fmt.Printf("%+v\n", taskList)
+	//for
+	for i := 0; i < len(taskList); i++ {
+		fmt.Printf("%d: %+v\n", i, taskList[i])
+	}
+	//for range
+	for i, task := range taskList {
+		fmt.Printf("%d: %+v\n", i, task)
+	}
 
 }
