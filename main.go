@@ -18,15 +18,20 @@ func main() {
 		"http://youtube.com",
 		"http://instagram.com",
 	}
-	for _, serv := range servs {
-		go checkServer(serv, channel)
-	}
 
-	for i := 0; i < len(servs); i++ {
+	i := 0
+
+	for i < 2 {
+
+		for _, servidor := range servs {
+			go checkServer(servidor, channel)
+		}
+		time.Sleep(1 * time.Second)
 		fmt.Println(<-channel)
+		i++
 	}
-	time := time.Since(start)
-	fmt.Println("Elapsed time:", time)
+	finish := time.Since(start)
+	fmt.Println("Tiempo de ejecucion: ", finish)
 }
 
 func checkServer(serv string, channel chan string) {
