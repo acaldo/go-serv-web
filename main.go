@@ -8,6 +8,7 @@ import (
 
 func main() {
 	start := time.Now()
+	channel := make(chan string)
 
 	servs := []string{
 		"http://platzi.com",
@@ -18,16 +19,22 @@ func main() {
 		"http://instagram.com",
 	}
 	for _, serv := range servs {
-		checkServer(serv)
+		go checkServer(serv, channel)
+	}
+
+	for i := 0; i < len(servs); i++ {
+		fmt.Println(<-channel)
 	}
 	time := time.Since(start)
 	fmt.Println("Elapsed time:", time)
 }
 
-func checkServer(serv string) {
+func checkServer(serv string, channel chan string) {
 	_, err := http.Get(serv)
 	if err != nil {
-		fmt.Println(serv, "is down")
+		//fmt.Println(serv, "is down")
+		channel <- serv + " is down"
 	}
-	fmt.Println(serv, "is up")
+	//fmt.Println(serv, "is up")
+	channel <- serv + " is up"
 }
